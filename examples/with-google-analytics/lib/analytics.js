@@ -1,17 +1,19 @@
-export const GA_TRACKING_ID = '<YOUR_GA_TRACKING_ID>'
+// This should be a value that starts with "UA-"
+export const GA_MEASUREMENT_ID = '<YOUR_GA_TRACKING_ID>'
 
-// https://developers.google.com/analytics/devguides/collection/gtagjs/pages
+// https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications
 export const pageview = url => {
-  window.gtag('config', GA_TRACKING_ID, {
-    page_path: url
-  })
+  window.ga('set', 'page', url)
+  window.ga('send', 'pageview')
 }
 
-// https://developers.google.com/analytics/devguides/collection/gtagjs/events
+// https://developers.google.com/analytics/devguides/collection/analyticsjs/events
 export const event = ({ action, category, label, value }) => {
-  window.gtag('event', action, {
-    event_category: category,
-    event_label: label,
-    value: value
+  window.ga('send', {
+    hitType: 'event',
+    eventCategory: category,
+    eventAction: action,
+    eventLabel: label,
+    eventValue: value
   })
 }
