@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Page from '../components/Page'
 
-import * as gtag from '../lib/gtag'
+import * as analytics from '../lib/analytics'
 
 export default class extends Component {
   state = { message: '' }
@@ -13,7 +13,7 @@ export default class extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
-    gtag.event({
+    analytics.event({
       action: 'submit_form',
       category: 'Contact',
       label: this.state.message
